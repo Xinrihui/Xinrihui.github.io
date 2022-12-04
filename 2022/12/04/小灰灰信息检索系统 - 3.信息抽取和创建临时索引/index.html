@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>小灰灰信息检索系统 - 3.信息抽取和创建临时索引 | 小灰灰在青青草原</title><meta name="author" content="Xinrihui"><meta name="copyright" content="Xinrihui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="小灰灰信息检索系统 - 3.信息抽取和创建临时索引网页爬取下来之后，我们需要对网页进行离线分析。分析阶段主要包括两个步骤，第一个是抽取网页文本信息，第二个是分词并创建临时索引。抽取网页文本信息网页是半结构化数据，里面夹杂着各种标签、JavaScript 代码、CSS 样式。对于搜索引擎来说，它只关心网页中的文本信息，也就是，网页显示在浏览器中时，能被用户肉眼看到的那部分信息。我们如何从半结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小灰灰信息检索系统 - 3.信息抽取和创建临时索引">
+<meta property="og:url" content="https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%203.%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96%E5%92%8C%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E7%B4%A2%E5%BC%95/index.html">
+<meta property="og:site_name" content="小灰灰在青青草原">
+<meta property="og:description" content="小灰灰信息检索系统 - 3.信息抽取和创建临时索引网页爬取下来之后，我们需要对网页进行离线分析。分析阶段主要包括两个步骤，第一个是抽取网页文本信息，第二个是分词并创建临时索引。抽取网页文本信息网页是半结构化数据，里面夹杂着各种标签、JavaScript 代码、CSS 样式。对于搜索引擎来说，它只关心网页中的文本信息，也就是，网页显示在浏览器中时，能被用户肉眼看到的那部分信息。我们如何从半结构">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-12-04T14:27:26.000Z">
+<meta property="article:modified_time" content="2022-12-04T14:29:16.421Z">
+<meta property="article:author" content="Xinrihui">
+<meta property="article:tag" content="倒排索引">
+<meta property="article:tag" content="bm25">
+<meta property="article:tag" content="tf-idf">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%203.%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96%E5%92%8C%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E7%B4%A2%E5%BC%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '小灰灰信息检索系统 - 3.信息抽取和创建临时索引',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-04 22:29:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小灰灰在青青草原" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小灰灰在青青草原</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">小灰灰信息检索系统 - 3.信息抽取和创建临时索引</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-04T14:27:26.000Z" title="Created 2022-12-04 22:27:26">2022-12-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-04T14:29:16.421Z" title="Updated 2022-12-04 22:29:16">2022-12-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">从零开始搭建搜索引擎</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="小灰灰信息检索系统 - 3.信息抽取和创建临时索引"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 9.5.34 (469085)"/><meta name="author" content="羊村的好朋友小灰灰"/><meta name="created" content="2022-01-27 09:37:29 +0000"/><meta name="source" content="desktop.win"/><meta name="source-application" content="yinxiang.win32"/><meta name="updated" content="2022-02-14 11:43:31 +0000"/><title>小灰灰信息检索系统 - 3.信息抽取和创建临时索引</title></head><body><div><div><br/></div><div><br/></div><div><span style="font-size: 12pt;">网页爬取下来之后，我们需要对网页进行离线分析。分析阶段主要包括两个步骤，第一个是抽取网页文本信息，第二个是分词并创建临时索引。</span></div><div><br/></div><ul><li><div><span style="font-size: 12pt;">抽取网页文本信息</span></div></li></ul><div><br/></div><div><span style="font-size: 12pt;">网页是半结构化数据，里面夹杂着各种标签、JavaScript 代码、CSS 样式。对于搜索引擎来说，它只关心网页中的文本信息，也就是，网页显示在浏览器中时，能被用户肉眼看到的那部分信息。我们如何从半结构化的网页中，抽取出搜索引擎关系的文本信息呢？</span></div><div><br/></div><div><span style="font-size: 12pt;">我们之所以把网页叫作半结构化数据，是因为它本身是按照一定的规则来书写的。这个规则就是 HTML 语法规范。我们依靠 HTML 标签来抽取网页中的文本信息。这个抽取的过程，大体可以分为两步。</span></div><div><br/></div><div><span style="font-size: 12pt;">第一步是去掉 JavaScript 代码、CSS 格式以及下拉框中的内容（因为下拉框在用户不操作的情况下，也是看不到的）。也就是，，这三组标签之间的内容。我们可以 利用 AC 自动机这种 多模式串匹配算法，在网页这个大字符串中，一次性查找, ,</span></div><div><br/></div><div><span style="font-size: 12pt;">第二步是去掉所有 HTML 标签。这一步也是通过字符串匹配算法来实现的。过程跟第一步类似，我就不重复讲了。</span></div><div><br/></div><ul><li><div><span style="font-size: 12pt;">分词并创建临时索引</span></div></li></ul><div><br/></div><div><span style="font-size: 12pt;">经过上面的处理之后，我们就从网页中抽取出了我们关心的文本信息。接下来，我们要对文本信息进行分词，并且创建临时索引。</span></div><div><br/></div><div><span style="font-size: 12pt;">对于英文网页来说，分词非常简单。我们只需要通过空格、标点符号等分隔符，将每个单词分割开来就可以了。但是，对于中文来说，分词就复杂太多了。我这里介绍一种比较简单的思路，基于字典和规则的分词方法。</span></div><div><br/></div><div><span style="font-size: 12pt;">其中，字典也叫词库，里面包含大量常用的词语（我们可以直接从网上下载别人整理好的）。我们借助词库并采用</span><span style="font-size: 12pt; color: rgb(255, 0, 0);">最长匹配规则</span><span style="font-size: 12pt;">，来对文本进行分词。所谓最长匹配，也就是匹配尽可能长的词语。我举个例子解释一下。</span></div><div><br/></div><div><span style="font-size: 12pt;">比如要分词的文本是“中国人民解放了”，我们词库中有“中国”“中国人”“中国人民”“中国人民解放军”这几个词，那我们就取最长匹配，也就是“中国人民”划为一个词，而不是把“中国”、“中国人“划为一个词。具体到实现层面，我们可以将词库中的单词，构建成 Trie 树结构，然后拿网页文本在 Trie 树中匹配。</span></div><div><br/></div><div><span style="font-size: 12pt;">每个网页的文本信息在分词完成之后，我们都得到一组单词列表。我们把单词与网页之间的对应关系，写入到 一个</span> <span style="font-size: 12pt; font-weight: bold;">临时索引文件&nbsp;&nbsp;</span><span style="font-size: 12pt; font-weight: bold;">（tmp_Index.bin）</span><span style="font-size: 12pt;">中，这个临时索引文件（只有一个还很大）用来构建倒排索引文件。临时索引文件的格式如下：</span></div><div><img src="/Resources/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%203.%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96%E5%92%8C%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E7%B4%A2%E5%BC%95.resources/3268835C-0062-494E-A430-B772A239F87B.jpg" height="596" width="1142"/></div><div><br/></div><div><span style="font-size: 12pt;">在临时索引文件中，我们存储的是单词编号，也就是图中的 term_id，而非单词本身。这样做的目的主要是为了节省存储的空间。</span></div><div><br/></div><div><span style="font-size: 12pt;">给单词编号的方式，跟给网页编号类似。我们维护一个&nbsp;&nbsp;</span><span style="font-size: 12pt; color: rgb(255, 0, 0);">计数器</span><span style="font-size: 12pt;">，每当从网页文本信息中分割出一个新的单词的时候，我们就从计数器中取一个编号，分配给它，然后计数器加一。</span></div><div><br/></div><div><span style="font-size: 12pt;">在这个过程中，我们还需要使用散列表，记录已经编过号的单词。在对网页文本信息分词的过程中，我们拿分割出来的单词，先到散列表中查找，如果找到，那就直接使用已有的编号；如果没有找到，我们再去计数器中拿号码，并且将这个新单词以及编号添加到散列表中。</span></div><div><br/></div><div><span style="font-size: 12pt;">当所有的网页处理（分词及写入临时索引）完成之后，我们再将这个单词跟编号之间的对应关系，写入到磁盘文件中，并命名为 term_id.bin。</span></div><div><br/></div><div><span style="font-size: 12pt;">经过分析阶段，我们得到了两个重要的文件。它们分别是临时索引文件（tmp_index.bin）和 单词编号文件（term_id.bin）。</span></div><div><br/></div><hr/><div><span style="font-size: 12pt; color: rgb(255, 0, 0);">问题 ：如何&nbsp;&nbsp;构建 临时索引文件</span></div><div><br/></div><div><span style="font-size: 12pt;">1.存储 临时索引 的文件（tmp_index.bin）设计结构如下：&nbsp;&nbsp;</span></div><table style="border-collapse: collapse; min-width: 100%;"><colgroup><col style="width: 130px;"/><col style="width: 130px;"/><col style="width: 130px;"/><col style="width: 130px;"/><col style="width: 130px;"/></colgroup><tbody><tr><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">地址</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">0-3</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">4 -7</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">8-11</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">12-15</span></div></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">域，占字节数</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">term_id1（4B）</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">doc_id1（4B）</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">term_id2（4B）</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">doc_id1（4B）</span></div></td></tr><tr><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">值</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">1</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">1</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">2</span></div></td><td style="border: 1px solid rgb(204, 204, 204); width: 130px; padding: 8px;"><div><span style="font-size: 12pt;">1</span></div></td></tr></tbody></table><div><br/></div><div><span style="font-size: 12pt;">2.单词编号&nbsp;&nbsp;文件不大（term_id.bin），&nbsp;&nbsp;可以 放入&nbsp;&nbsp;内存的 Hash&nbsp;&nbsp;表中，结构为：</span></div><div><span style="font-size: 12pt;">{&nbsp;&nbsp; term :&nbsp;&nbsp;term_id }</span></div><div><br/></div><div><span style="font-size: 12pt;">同理，逆单词编号 &nbsp;&nbsp;文件（inver_term_id.bin）&nbsp;&nbsp;的结构为：</span></div><div><span style="font-size: 12pt;">{&nbsp;&nbsp;term_id ：&nbsp;&nbsp;term }</span></div><div><br/></div><div><span style="font-size: 12pt;">其中&nbsp;&nbsp;单词id&nbsp;&nbsp;的计数器&nbsp;&nbsp;可以直接&nbsp;&nbsp;使用 hash&nbsp;&nbsp;表的&nbsp;&nbsp;长度</span></div><div><br/></div><div><span style="font-size: 12pt;">3.分词&nbsp;&nbsp;采用&nbsp;&nbsp;结巴中文分词&nbsp;&nbsp;</span><a target="_blank" rel="noopener" href="https://github.com/fxsjy/jieba" style="font-size: 12pt;">https://github.com/fxsjy/jieba</a></div><div><br/></div><div><span style="font-size: 12pt;">要额外导入&nbsp;&nbsp;自己的&nbsp;&nbsp;词典，以便包含 jieba 词库里没有的词</span></div><div><span style="font-size: 12pt;">词典中 一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开</span></div><div><br/></div><div><span style="font-size: 12pt;">在爬取的原始网页的 文件（doc_raw.bin）中，每一个百度百科文档的 第一行为&nbsp;&nbsp;这个词条页&nbsp;&nbsp;的词条，所以可以把&nbsp;&nbsp;这个词条&nbsp;&nbsp;加入词典（baidubaikeDic.txt），词频 根据&nbsp;&nbsp;经验&nbsp;&nbsp;都取 10000</span></div><div><br/></div><div><span style="font-size: 12pt;">使用 add_word(word, freq=None, tag=None) 和 del_word(word) 可在程序中动态修改词典，但是我们采用&nbsp;&nbsp;先形成&nbsp;&nbsp;词典再进行分词的方式，因为在&nbsp;&nbsp;该词条页的文本中&nbsp;&nbsp;极有可能&nbsp;&nbsp;有别的词条，因而 需要被正确地分词。</span></div><div><br/></div><div><br/></div><div><span style="font-size: 12pt;">4.解析&nbsp;&nbsp;文档内容时，先过滤&nbsp;&nbsp;不可见的&nbsp;&nbsp;非法字符</span></div><div><br/></div><div><br/></div></div><div><br/></div></body></html></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://xinrihui.github.io">Xinrihui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%203.%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96%E5%92%8C%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E7%B4%A2%E5%BC%95/">https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%203.%E4%BF%A1%E6%81%AF%E6%8A%BD%E5%8F%96%E5%92%8C%E5%88%9B%E5%BB%BA%E4%B8%B4%E6%97%B6%E7%B4%A2%E5%BC%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/">倒排索引</a><a class="post-meta__tags" href="/tags/bm25/">bm25</a><a class="post-meta__tags" href="/tags/tf-idf/">tf-idf</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%204.%E5%BB%BA%E7%AB%8B%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">小灰灰信息检索系统 - 4.建立倒排索引</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%202.%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E6%96%87%E6%A1%A3/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">小灰灰信息检索系统 - 2.解析网页文档</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-1.%E7%88%AC%E8%99%AB/" title="小灰灰信息检索系统 -1.爬虫"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 -1.爬虫</div></div></a></div><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%204.%E5%BB%BA%E7%AB%8B%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/" title="小灰灰信息检索系统 - 4.建立倒排索引"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 - 4.建立倒排索引</div></div></a></div><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%205.%E6%9F%A5%E8%AF%A2/" title="小灰灰信息检索系统 - 5.查询"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 - 5.查询</div></div></a></div><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%20%E9%99%84%E5%BD%95%20%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" title="小灰灰信息检索系统 - 附录 文件的存储管理"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 - 附录 文件的存储管理</div></div></a></div><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%200.%E4%BB%8B%E7%BB%8D/" title="小灰灰信息检索系统 - 0.介绍"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 - 0.介绍</div></div></a></div><div><a href="/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%202.%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E6%96%87%E6%A1%A3/" title="小灰灰信息检索系统 - 2.解析网页文档"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">小灰灰信息检索系统 - 2.解析网页文档</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinrihui</div><div class="author-info__description">一个计算机民间爱好者的关于算法，分布式系统和机器学习的笔记，欢迎大佬拍砖交流～。笔者曾在微软亚洲研究院实习，参与国家重点研发计划，兴趣为分布式系统和机器学习。转载请注明引用（应该也没人看 ==），邮箱 xinrihui@outlook.com</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinrihui"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC/" title="提升方法推导(AdaBoost, GBDT, XGBoost)"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="提升方法推导(AdaBoost, GBDT, XGBoost)"/></a><div class="content"><a class="title" href="/2022/12/04/%E6%8F%90%E5%8D%87%E6%96%B9%E6%B3%95%E6%8E%A8%E5%AF%BC/" title="提升方法推导(AdaBoost, GBDT, XGBoost)">提升方法推导(AdaBoost, GBDT, XGBoost)</a><time datetime="2022-12-04T15:29:03.000Z" title="Created 2022-12-04 23:29:03">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/MLP%20CNN%20RNN%20LSTM%E7%9A%84%E6%8E%A8%E5%AF%BC%EF%BC%88%E6%AD%A3%E5%90%91%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%89/" title="MLP CNN RNN LSTM的推导（正向和反向传播）"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MLP CNN RNN LSTM的推导（正向和反向传播）"/></a><div class="content"><a class="title" href="/2022/12/04/MLP%20CNN%20RNN%20LSTM%E7%9A%84%E6%8E%A8%E5%AF%BC%EF%BC%88%E6%AD%A3%E5%90%91%E5%92%8C%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%89/" title="MLP CNN RNN LSTM的推导（正向和反向传播）">MLP CNN RNN LSTM的推导（正向和反向传播）</a><time datetime="2022-12-04T15:17:01.000Z" title="Created 2022-12-04 23:17:01">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/Word2vec%20%E5%8E%9F%E7%90%86/" title="Word2vec 推导"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Word2vec 推导"/></a><div class="content"><a class="title" href="/2022/12/04/Word2vec%20%E5%8E%9F%E7%90%86/" title="Word2vec 推导">Word2vec 推导</a><time datetime="2022-12-04T15:17:01.000Z" title="Created 2022-12-04 23:17:01">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/%E9%99%8D%E7%BB%B4%EF%BC%88PCA%20%E5%92%8C%20LDA%EF%BC%89%E6%8E%A8%E5%AF%BC/" title="降维（PCA 和 LDA）推导"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="降维（PCA 和 LDA）推导"/></a><div class="content"><a class="title" href="/2022/12/04/%E9%99%8D%E7%BB%B4%EF%BC%88PCA%20%E5%92%8C%20LDA%EF%BC%89%E6%8E%A8%E5%AF%BC/" title="降维（PCA 和 LDA）推导">降维（PCA 和 LDA）推导</a><time datetime="2022-12-04T15:17:01.000Z" title="Created 2022-12-04 23:17:01">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/XGBoost%E5%8E%9F%E7%90%86%20-%20%E7%A8%80%E7%96%8F%E6%84%9F%E7%9F%A5/" title="XGBoost原理 - 稀疏感知"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XGBoost原理 - 稀疏感知"/></a><div class="content"><a class="title" href="/2022/12/04/XGBoost%E5%8E%9F%E7%90%86%20-%20%E7%A8%80%E7%96%8F%E6%84%9F%E7%9F%A5/" title="XGBoost原理 - 稀疏感知">XGBoost原理 - 稀疏感知</a><time datetime="2022-12-04T15:02:24.000Z" title="Created 2022-12-04 23:02:24">2022-12-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Xinrihui</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
