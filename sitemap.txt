@@ -1,4 +1,11 @@
-http://example.com/2022/12/03/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/
-http://example.com/2022/12/03/hello-world/
-http://example.com/
-http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/
+https://xinrihui.github.io/2022/12/03/readme/
+https://xinrihui.github.io/tags/index.html
+https://xinrihui.github.io/categories/index.html
+https://xinrihui.github.io/2022/12/03/pycharm/
+https://xinrihui.github.io/
+https://xinrihui.github.io/tags/iOS/
+https://xinrihui.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/
+https://xinrihui.github.io/tags/hexo/
+https://xinrihui.github.io/tags/node-js/
+https://xinrihui.github.io/categories/iOS%E7%AC%94%E8%AE%B0/
+https://xinrihui.github.io/categories/Web/

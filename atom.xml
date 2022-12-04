@@ -1,60 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>小灰灰的博客</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://xinrihui.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2022-12-03T08:04:11.867Z</updated>
-  <id>http://example.com/</id>
+  <link href="https://xinrihui.github.io/"/>
+  <updated>2022-12-03T14:05:20.396Z</updated>
+  <id>https://xinrihui.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Xinrihui</name>
     
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>我的文章</title>
-    <link href="http://example.com/2022/12/03/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/"/>
-    <id>http://example.com/2022/12/03/%E6%88%91%E7%9A%84%E6%96%87%E7%AB%A0/</id>
-    <published>2022-12-03T08:03:30.000Z</published>
-    <updated>2022-12-03T08:04:11.867Z</updated>
+    <title>pycharm</title>
+    <link href="https://xinrihui.github.io/2022/12/03/pycharm/"/>
+    <id>https://xinrihui.github.io/2022/12/03/pycharm/</id>
+    <published>2022-12-03T14:05:20.000Z</published>
+    <updated>2022-12-03T14:05:20.396Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2>]]></content>
+    <content type="html"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="yes"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 9.5.34 (469085)"/><meta name="author" content="735407517"/><meta name="created" content="2017-06-23 00:48:14 +0000"/><meta name="source-url" content="https://blog.csdn.net/Dity_Lee/article/details/78117135"/><meta name="updated" content="2021-12-27 14:12:42 +0000"/><title>pycharm</title></head><body><div>1.项目结构如下设置</div><div><br/></div><div><img src="/Resources/pycharm.resources/QQ截图20170623084643.png" height="713" width="971"/></div><div><br/></div><div>2.所有字体大小设置</div><div>setting&gt;&gt;&gt;在搜索框搜Appearance</div><div><img src="/Resources/pycharm.resources/838F8533-A7BC-4792-8C0A-F52866492683.png" height="817" width="1253"/></div><div><br/></div><div><br/></div></body></html>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h2&gt;&lt;h2 id=&quot;第二章&quot;&gt;&lt;a href=&quot;#第二章&quot; class=&quot;headerlink&quot; title=&quot;第二章&quot;&gt;&lt;/a&gt;第二章&lt;/h</summary>
+    <summary type="html">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/T</summary>
       
     
     
     
+    <category term="iOS笔记" scheme="https://xinrihui.github.io/categories/iOS%E7%AC%94%E8%AE%B0/"/>
     
-    <category term="机器学习" scheme="http://example.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="iOS" scheme="https://xinrihui.github.io/tags/iOS/"/>
+    
+    <category term="读书笔记" scheme="https://xinrihui.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2022/12/03/hello-world/"/>
-    <id>http://example.com/2022/12/03/hello-world/</id>
-    <published>2022-12-03T03:25:07.154Z</published>
-    <updated>2022-12-03T03:25:07.154Z</updated>
+    <title>hexo搭建个人博客</title>
+    <link href="https://xinrihui.github.io/2022/12/03/readme/"/>
+    <id>https://xinrihui.github.io/2022/12/03/readme/</id>
+    <published>2022-12-03T14:05:20.000Z</published>
+    <updated>2022-12-03T15:15:46.065Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h1><p>一个傻瓜的办法，可以自动生成博客网站，然后将其托管在github.io，这样不用自己租云服务器和购买域名，爽歪歪</p><h2 id="1-安装nodejs"><a href="#1-安装nodejs" class="headerlink" title="1.安装nodejs"></a>1.安装nodejs</h2><p>下载安装包自己安装<br><a href="https://nodejs.org/en/">https://nodejs.org/en/</a></p><h2 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="2.安装Hexo"></a>2.安装Hexo</h2><p>Hexo 是一个能自动生成网站代码的框架（巨好用）</p><p>npm install -g hexo-cli</p><p>（npm 是 nodejs 的命令）</p><p>检查 Hexo 是否安装成功：<br>hexo -v</p><p>查看 Hexo 帮助 :<br>hexo –help</p><h2 id="3-生成网站代码"><a href="#3-生成网站代码" class="headerlink" title="3.生成网站代码"></a>3.生成网站代码</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>新建项目文件夹，并进入文件夹内：</p><p>mkdir Blog</p><p>cd Blog</p><p>初始化项目（必须进入到项目文件夹里面后，执行此命令）</p><p>hexo init </p><h3 id="启动网站"><a href="#启动网站" class="headerlink" title="启动网站"></a>启动网站</h3><p>hexo s </p><p>浏览器打开 <a href="http://localhost:4000/">http://localhost:4000</a>  能看到生成的网站页面</p><h2 id="4-更换网站主题"><a href="#4-更换网站主题" class="headerlink" title="4.更换网站主题"></a>4.更换网站主题</h2><p>官网下载主题 <a href="https://hexo.io/themes/">https://hexo.io/themes/</a></p><p>clone主题代码到 本项目下的 themes&#x2F;butterfly</p><p>git clone <a href="https://github.com/jerryc127/hexo-theme-butterfly.git">https://github.com/jerryc127/hexo-theme-butterfly.git</a> themes&#x2F;butterfly</p><p>修改本项目下的配置文件 _config.yml<br>中的 主题选项</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: butterfly</span><br></pre></td></tr></table></figure><p>遇到报错的解决方案：</p><p>安装如下插件：</p><p>npm install –save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive</p><h3 id="清理项目缓存"><a href="#清理项目缓存" class="headerlink" title="清理项目缓存"></a>清理项目缓存</h3><p>hexo clean</p><h3 id="重新生成项目"><a href="#重新生成项目" class="headerlink" title="重新生成项目"></a>重新生成项目</h3><p>hexo g </p><p>启动网站：<br>hexo s </p><h2 id="5-将网站发布到-gihub-io-上"><a href="#5-将网站发布到-gihub-io-上" class="headerlink" title="5.将网站发布到 gihub.io 上"></a>5.将网站发布到 gihub.io 上</h2><p>在自己的 github 主页上新建仓，名字为 xinrihui.github.io</p><p>安装 hexo-deployer-git 插件：</p><p>npm install –save hexo-deployer-git</p><p>修改本项目下的配置文件 _config.yml 中的发布选项</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: https://github.com/Xinrihui/Xinrihui.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure><p>部署项目到云端</p><p>hexo d </p><p>此时需要输入 github 的账号和密码，但是即使密码正确也会报错，<br>这是因为Github在2021年8月13日停止了使用账户密码认证的支持，<br>这时需要在Gihub上Developer Settings页面上新建一个 <a href="https://github.com/settings/tokens">Personal Access Token </a> 代替密码。</p><h2 id="6-给网站添加-分类页面-和-标签页面"><a href="#6-给网站添加-分类页面-和-标签页面" class="headerlink" title="6.给网站添加 分类页面 和 标签页面"></a>6.给网站添加 分类页面 和 标签页面</h2><p>在主题的配置文件 themes&#x2F;butterfly&#x2F;_config.yml 中放开注释：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categories: /categories/ || fa fa-th </span><br><span class="line"></span><br><span class="line">tags: /tags/ || fa fa-tags </span><br><span class="line"></span><br></pre></td></tr></table></figure><p>利用框架自动生成分类页面</p><p>hexo new page categories</p><p>让主题识别生成的页面为标签页面，打开 source&#x2F;categories&#x2F;index.md 页面文件，修改为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章分类</span><br><span class="line">date: 2021-01-25 22:37:25</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure><p>同理，打开 source&#x2F;tags&#x2F;index.md 页面文件，修改为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 标签</span><br><span class="line">date: 2021-01-25 22:54:58</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">---</span><br></pre></td></tr></table></figure><p>打开需要添加分类的文章，在文章里添加上以下文案就设置好分类了</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">categories:</span><br><span class="line">- Android</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">//设置二级分类</span><br><span class="line">---</span><br><span class="line">categories: </span><br><span class="line">- Android</span><br><span class="line">- xxx</span><br><span class="line">---</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>打开需要添加标签的文章，在文章里添加上以下文案，就设置好标签</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//设置单标签</span><br><span class="line">---</span><br><span class="line">tags:</span><br><span class="line">- Facebook配置</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">//设置多标签 并同时设置分类</span><br><span class="line">---</span><br><span class="line">categories:</span><br><span class="line">- Android</span><br><span class="line">  tags:</span><br><span class="line">- Android</span><br><span class="line">- RecyclerView</span><br><span class="line">---</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="7-将-evernote-中的笔记导入到-网站中"><a href="#7-将-evernote-中的笔记导入到-网站中" class="headerlink" title="7.将 evernote 中的笔记导入到 网站中"></a>7.将 evernote 中的笔记导入到 网站中</h2><p>在印象笔记中将笔记导出为 .html </p><p>在 <a href="https://github.com/TreasureU/EvertNoteExportToHexo">EvertNoteExport.py</a> 中配置 印象笔记导出的 .html 文件的路径</p><p>运行 python 脚本：</p><p>python EvertNoteExport.py</p><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] <a href="https://juejin.cn/post/6978377036645531662">https://juejin.cn/post/6978377036645531662</a></p><p>[2] <a href="https://github.com/TreasureU/EvertNoteExportToHexo">https://github.com/TreasureU/EvertNoteExportToHexo</a></p><p>[3]<a href="https://tohugo.com/2021/01/26/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/Hexo%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE%EF%BC%88%E5%9C%A8Next%E4%B8%BB%E9%A2%98%E4%B8%8B%EF%BC%89/">https://tohugo.com/2021/01/26/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/Hexo%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE%EF%BC%88%E5%9C%A8Next%E4%B8%BB%E9%A2%98%E4%B8%8B%EF%BC%89/</a></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+    <summary type="html">&lt;h1 id=&quot;搭建个人博客&quot;&gt;&lt;a href=&quot;#搭建个人博客&quot; class=&quot;headerlink&quot; title=&quot;搭建个人博客&quot;&gt;&lt;/a&gt;搭建个人博客&lt;/h1&gt;&lt;p&gt;一个傻瓜的办法，可以自动生成博客网站，然后将其托管在github.io，这样不用自己租云服务器和购买域名，爽</summary>
       
     
     
     
+    <category term="Web" scheme="https://xinrihui.github.io/categories/Web/"/>
+    
+    
+    <category term="hexo" scheme="https://xinrihui.github.io/tags/hexo/"/>
+    
+    <category term="node.js" scheme="https://xinrihui.github.io/tags/node-js/"/>
     
   </entry>
   
