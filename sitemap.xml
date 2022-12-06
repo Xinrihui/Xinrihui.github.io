@@ -175,7 +175,7 @@
 
   <url>
     <loc>https://xinrihui.github.io/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -183,119 +183,119 @@
   
   <url>
     <loc>https://xinrihui.github.io/tags/MLP/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/CNN/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/RNN/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/LSTM/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/word2vec/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/xgboost/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/hexo/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/node-js/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/bm25/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/tf-idf/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/AdaBoost/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/GBDT/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/PCA/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/tags/LDA/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -304,28 +304,28 @@
   
   <url>
     <loc>https://xinrihui.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E%A8%E5%85%AC%E5%BC%8F%E7%B3%BB%E5%88%97/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/categories/XGBoost-%E7%B3%BB%E5%88%97/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/categories/Web/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xinrihui.github.io/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</loc>
-    <lastmod>2022-12-05</lastmod>
+    <lastmod>2022-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
