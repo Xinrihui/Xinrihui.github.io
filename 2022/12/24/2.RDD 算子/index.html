@@ -1,0 +1,370 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spark - RDD 算子 | 小灰灰在青青草原</title><meta name="author" content="Xinrihui"><meta name="copyright" content="Xinrihui"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2.RDD 算子读写文件spark默认读取 HDFS中的文件（hdfs:&#x2F;&#x2F;Master:9000&#x2F;tmp&#x2F;hive1）sc.textFile(&quot;hdfs:&#x2F;&#x2F;Master:9000&#x2F;tmp&#x2F;people&quot;) &#x2F;&#x2F; idea IDE默认在file:&#x2F;&#x2F;&#x2F;里找。最好指明文件路径 是在 HDFS 还是在本地  读取本地文件:val rdd&#x3D;sc.textFile(&quot;file:&#x2F;&#x2F;&#x2F;&#x2F;app&#x2F;ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark - RDD 算子">
+<meta property="og:url" content="https://xinrihui.github.io/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/index.html">
+<meta property="og:site_name" content="小灰灰在青青草原">
+<meta property="og:description" content="2.RDD 算子读写文件spark默认读取 HDFS中的文件（hdfs:&#x2F;&#x2F;Master:9000&#x2F;tmp&#x2F;hive1）sc.textFile(&quot;hdfs:&#x2F;&#x2F;Master:9000&#x2F;tmp&#x2F;people&quot;) &#x2F;&#x2F; idea IDE默认在file:&#x2F;&#x2F;&#x2F;里找。最好指明文件路径 是在 HDFS 还是在本地  读取本地文件:val rdd&#x3D;sc.textFile(&quot;file:&#x2F;&#x2F;&#x2F;&#x2F;app&#x2F;ha">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-12-24T15:30:51.000Z">
+<meta property="article:modified_time" content="2022-12-24T15:31:14.541Z">
+<meta property="article:author" content="Xinrihui">
+<meta property="article:tag" content="分布式批处理">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xinrihui.github.io/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spark - RDD 算子',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-24 23:31:14'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="小灰灰在青青草原" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小灰灰在青青草原</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spark - RDD 算子</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-24T15:30:51.000Z" title="Created 2022-12-24 23:30:51">2022-12-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-24T15:31:14.541Z" title="Updated 2022-12-24 23:31:14">2022-12-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spark-%E7%B3%BB%E5%88%97/">Spark 系列</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spark - RDD 算子"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 9.6.1 (469462)"/><meta name="author" content="羊村的好朋友小灰灰"/><meta name="created" content="2022-12-07 04:27:35 +0000"/><meta name="source" content="yinxiang.superNote"/><meta name="source-application" content="yinxiang.win32"/><meta name="source-url" content="https://blog.csdn.net/CYJ2014go/article/details/83014075"/><meta name="updated" content="2022-12-24 15:29:03 +0000"/><meta name="content-class" content="yinxiang.superNote"/><title>2.RDD 算子</title></head><body><h1><span style="font-family: unset;"><span style="color: unset;">读写文件</span></span></h1><div><br/></div><div><span style="font-size: 12pt;">spark默认读取 HDFS中的文件（<span style="font-weight: bold;">hdfs://Master:9000</span>/tmp/hive1）</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">sc.textFile("hdfs://Master:9000/tmp/people") // idea IDE默认在file:///里找。最好指明文件路径 是在 HDFS 还是在本地 
+</div><div><br/></div><div><span style="font-size: 12pt;">读取本地文件:</span></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">val rdd=sc.textFile("file:////app/hadoop/spark110/NOTICE")   //必须在所有datanode中都有，而且都为此路径</div><div><br/></div><div><br/></div><div><span style="font-size: 12pt;">windows 下的 本地文件 路径必须使用 '\\' 隔开</span></div><div style="--en-codeblock:true;--en-codeblockLanguage:python;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">data_dir = 'data\\' #   当前文件夹下有 data目录
+
+tmp_index_file_dir = data_dir + 'tmp_index_spark.bin'  
+lines = sc.textFile(tmp_index_file_dir,8)</div><div><br/></div><div><span style="font-size: 12pt;"><span style="color: rgb(255, 0, 0);">问题： 如何控制 输出的文件 只有一个切片</span></span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:python;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">lines = sc.textFile(tmp_index_file_dir,8) 
+# 对大文件 进行切片 sliceNum=8，否则报错
+# 20/05/30 11:54:28 ERROR PythonRunner: This may have been caused by a prior exception:java.net.SocketException: Connection reset by peer: socket write error
+
+lines=lines.map(lambda line:line.split("\t"))
+lines=lines.sortBy(lambda x: x[0])
+lines=lines.map(lambda line: line[0]+"\t"+line[1])
+
+# lines.saveAsTextFile(sorted_tmp_index_file_dir) # 在文件夹下 保存 sliceNum 个切片文件
+lines.coalesce(1, shuffle=True).saveAsTextFile(sorted_tmp_index_file_dir) # 在文件夹下 只有一个 切片
+</div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/24371259/how-to-make-saveastextfile-not-split-output-into-multiple-file" rev="en_rl_none"><span style="font-size: 12pt;">https://stackoverflow.com/questions/24371259/how-to-make-saveastextfile-not-split-output-into-multiple-file</span></a></div><div><br/></div><div><br/></div><h1>遍历 </h1><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:python;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">lines = sc.textFile(tmp_index_file_dir,8)  # 对大文件 要进行切片 sliceNum=8，否则报错
+
+print(lines.first())  # 显示 第1条
+print(lines.take(10)) # 可以看 指定数目的记录
+
+for line in lines: #TypeError: 'RDD' object is not iterable
+     print(line)
+
+for line in lines.collect() : # lazy 原则， 遇到 action 才真正 执行DAG 计算图；collect() 将数据从各个计算节点 拉回到主节点
+     print(line)</div><div><br/></div><div><br/></div><h1>重分区 </h1><div><br/></div><h2>coalesce() 和 repartition()</h2><div><br/></div><div><span style="font-size: 12pt;"><span style="color: rgb(255, 0, 0);">问题：分区太多了怎么办</span></span></div><div><br/></div><div><span style="font-size: 12pt;">在用户使用Spark的过程中，常常会使用filter算子进行数据过滤。 而频繁的过滤或者过<span style="font-family: unset;"><span style="color: unset;">滤掉的数据量过大就会产生问题，造成大量小分区的产生（每个分区数据量小）。</span></span></span></div><div><span style="font-size: 12pt;"><span style="font-family: unset;"><span style="color: unset;">例如：</span></span></span></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">val rdd2 = rdd1.filter(line=&gt;lines.contains("error"
+)).filter(line=&gt;line.contains("info")).collect()</div><div><br/></div><div><span style="font-size: 12pt;">Spark会对每一个分区分配一个task 来执行 RDD 的计算，如果task过多，那么每个task处理的数据量很小，就会造成线程频繁的在task之间切换，使得资源开销较大，且很多任务等待执行，并行度不高，这会造成集群工作效益低下。</span></div><div><br/></div><div><span style="font-size: 12pt;">采用 重分区的函数 来进行数据紧缩，减少分区数量，将小分区合并为大分区，从而提高效率</span></div><div><br/></div><div><span style="font-size: 12pt;">coalesce() 方法的 参数 shuffle默认 为false，</span></div><div><span style="font-size: 12pt;">repartition() 等价于 coalesce(shuffle=True)</span></div><div><br/></div><div><span style="font-size: 12pt;">假设RDD有 N个分区，需要重新划分成M个分区：（N -&gt; M）</span></div><ul><li><div><span style="font-size: 12pt;">N &lt; M: 一般情况下N个分区有数据分布不均匀的状况，利用HashPartitioner函数将数据重新分区为M个，这时需要将shuffle设置为true。因为重分区前后相当于宽依赖，会发生shuffle过程，此时可以使用 coalesce(shuffle=true)，或者直接使用repartition()。</span></div></li></ul><div><br/></div><ul><li><div><span style="font-size: 12pt;">如果N &gt; M 并且 N和M相差不多(假如N是1000，M是100): 那么就可以将N个分区中的若干个分区合并成一个新的分区，最终合并为M个分区，这是前后是窄依赖关系，可以使用coalesce(shuffle=false)。</span></div></li></ul><div><br/></div><ul><li><div><span style="font-size: 12pt;">如果 N &gt;&gt; M并且两者相差悬殊: 这时如果将shuffle设置为false，父子 RDD 是窄依赖关系，他们同处在一个stage中，就可能造成spark程序的并行度不够，从而影响性能。即当前的每个分区数据量过大，需要将分区数量增加，以利用并行计算能力，这就需要把Shuffle设置为true</span></div></li></ul><div><br/></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="https://blog.csdn.net/lzq20115395/article/details/80602071" rev="en_rl_none"><span style="font-size: 12pt;">https://blog.csdn.net/lzq20115395/article/details/80602071</span></a></div><div><a target="_blank" rel="noopener" href="http://lxw1234.com/archives/2015/07/341.htm" rev="en_rl_none"><span style="font-size: 12pt;">http://lxw1234.com/archives/2015/07/341.htm</span></a></div><div><br/></div><h2>分组 partitionBy</h2><div><br/></div><div><span style="font-size: 12pt;">repartition和partitionBy都是重新分区的算子，其中partitionBy只能作用于PairRDD. 但是，当作用于PairRDD时，repartition和partitionBy的行为是不同的。</span></div><div><br/></div><div><span style="font-size: 12pt;">repartition是把 <span style="color: #FF0000;">数据随机打散均匀分布于各个Partition，即随机数分区（不是根据 key 算出 hashcode 的 hash 分区）</span>；</span></div><div><br/></div><div><span style="font-size: 12pt;">partitionBy则在参数中指定了Partitioner（默认HashPartitioner），将每个(K,V)对按照K根据Partitioner计算得到对应的Partition。</span></div><div><span style="font-size: 12pt;">在合适的时候使用partitionBy可以减少shuffle次数，提高效率。</span></div><p><br/></p><table style="--en-fitwindow:false;border-left:1px solid #d9d9d9;border-top:1px solid #d9d9d9;border-collapse:collapse;width:570px;" width="570px"><colgroup><col style="width: 190px;"/><col style="width: 190px;"/><col style="width: 190px;"/></colgroup><tbody><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><br/></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>优点</div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>缺点</div></td></tr><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">repartition</span></div><div><span style="font-size: 12pt;">（随机分区）</span></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>使每个分区里数据尽量均匀</div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>相同key的记录可能重分区到不同的分区</div></td></tr><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">partitionBy</span></div><div><span style="font-size: 12pt;">（默认哈希分区）</span></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>相同key的记录会重分区到同一个分区</div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div>有数据倾斜的情况会导致每个分区数据量不均匀</div></td></tr></tbody></table><p><br/></p><div><br/></div><div><span style="font-size: 12pt;">我们可以自己设计合理的分区方法( 比如数量比较大的key 加个随机数 随机分到更多的分区， 这样处理数据倾斜更彻底一些)</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">def partitionBy(partitioner: Partitioner)
+                abstract class Partitioner extends Serializable {
+  def numPartitions: Int
+  def getPartition(key: Any): Int}</div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//查看rdd1中每个分区的元素  
+val rdd1 =  rdd.partitionBy(new org.apache.spark.HashPartitioner(2))
+
+rdd1.mapPartitionsWithIndex{
+      (partIdx,iter) =&gt; {
+         val part_map = scala.collection.mutable.Map[String, List[(Int,Int)]]()
+             
+		 while(iter.hasNext){
+		 
+             val part_name = "part_" + partIdx
+             var elem = iter.next()
+             
+			 if(part_map.contains(part_name)) {
+			 
+				 var elems = part_map(part_name)
+				 elems ::= elem
+				 part_map(part_name) = elems
+				 
+             } else {
+                 part_map(part_name) = List[(Int,Int)]{elem}
+             }
+         }
+         part_map.iterator
+
+        }
+     }.collect
+// Map[分区ID, 该分区的元素列表] </div><div><br/></div><div><span style="font-size: 12pt;">这里的分区方法可以选择， 默认的分区就是 HashPartition分区:</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">class HashPartitioner(partitions: Int) extends Partitioner {
+  require(partitions &gt;= 0, s"Number of partitions ($partitions) cannot be negative.")
+
+  def numPartitions: Int = partitions
+
+  def getPartition(key: Any): Int = key match {
+    case null =&gt; 0
+    case _ =&gt; Utils.nonNegativeMod(key.hashCode, numPartitions)
+  }
+
+  override def equals(other: Any): Boolean = other match {
+    case h: HashPartitioner =&gt;
+      h.numPartitions == numPartitions
+    case _ =&gt;
+      false
+  }
+
+  override def hashCode: Int = numPartitions
+}
+</div><div><br/></div><div><span style="font-size: 12pt;">还可以选择 范围分区 RangePartitioner ：先键值排序， 确定样本大小，采样后不放回 总体的随机采样方法， 分配键值的分区，通过样本采样避免数据倾斜。</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">val rdd2 = rdd.partitionBy(new org.apache.spark.RangePartitioner(3,rdd))
+rdd2.glom()</div><div><br/></div><div><span style="font-size: 12pt;">还可以 自定义分区函数， 自己根据业务数据减缓数据倾斜问题:</span></div><div><br/></div><div><span style="font-size: 12pt;">要实现自定义的分区器，你需要继承 org.apache.spark.Partitioner 类并实现下面三个方法</span></div><div><br/></div><div><span style="font-size: 12pt;">* numPartitions: Int：返回创建出来的分区数。</span></div><div><span style="font-size: 12pt;">* getPartition(key: Any): Int：返回给定键的分区编号（ 0 到 numPartitions-1）。</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">//自定义分区类，需继承Partitioner类
+class UsridPartitioner(numParts:Int) extends Partitioner{
+  //覆盖分区数
+  override def numPartitions: Int = numParts
+  
+  //覆盖分区号获取函数
+  override def getPartition(key: Any): Int = {
+     if(key.toString == "A")
+           key.toString.toInt%10
+     else:
+          key.toString.toInt%5      
+  }
+}</div><div><br/></div><div><br/></div><h1>排序 sortBy()</h1><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:python;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">list_b=[['1', '1'], ['0', '1'], ['2', '1'], ['3', '1'], ['4', '1'], ['5', '1'], ['6', '1'], ['7', '1'], ['8', '1'],
+['9', '1']]
+lines = sc.parallelize(list_b)
+lines=lines.sortBy( lambda x: x[0] ) # 指定 排序的键
+print(lines.take(10))</div><div><br/></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="https://www.iteblog.com/archives/1240.html" rev="en_rl_none"><span style="font-size: 12pt;">https://www.iteblog.com/archives/1240.html</span></a></div><div><a target="_blank" rel="noopener" href="http://lxw1234.com/archives/2015/07/363.htm" rev="en_rl_none"><span style="font-size: 12pt;">http://lxw1234.com/archives/2015/07/363.htm</span></a></div><div><br/></div><h1>分组聚合 groupByKey   reduceByKey()</h1><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">//在 spark-shell 模式下：
+var rdd1 = sc.makeRDD(Array(("A",0),("A",2),("B",1),("B",2),("C",1)))
+rdd1.groupByKey().collect
+
+// res81: Array[(String, Iterable[Int])] = Array((A,CompactBuffer(0, 2)), (B,CompactBuffer(2, 1)), (C,CompactBuffer(1)))</div><div><br/></div><div><span style="font-size: 12pt;">（2）reduceByKey</span></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">reduceByKey </span>用于将RDD[K,V]中 每个 Key 对应的 Value 值 根据映射函数来运算。</span></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">效果上 相当于 利用 groupbyKey 把 相同 key 对应的 value 值 放入一个 List 中，再对 这个 List 执行  reduce </span></span></div><div><br/></div><div><span style="font-size: 12pt;">def reduceByKey(func: (V, V) =&gt; V): RDD[(K, V)]</span></div><div><br/></div><div><span style="font-size: 12pt;">def reduceByKey(func: (V, V) =&gt; V, numPartitions: Int): RDD[(K, V)]</span></div><div><br/></div><div><span style="font-size: 12pt;">def reduceByKey(partitioner: Partitioner, func: (V, V) =&gt; V): RDD[(K, V)]</span></div><div><br/></div><div><span style="font-size: 12pt;">参数 numPartitions 用于指定分区数；</span></div><div><span style="font-size: 12pt;">参数 partitioner 用于指定分区函数；</span></div><div><br/></div><div><span style="font-size: 12pt;">eg1.</span></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//在 spark-shell 模式下：
+
+var rdd1 = sc.makeRDD(Array(("A",0),("A",2),("B",1),("B",2),("C",1))) rdd1.partitions.size // res82: Int = 15
+
+
+var rdd2 = rdd1.reduceByKey((x,y) =&gt; x + y)
+rdd2.collect
+// res85: Array[(String, Int)] = Array((A,2), (B,3), (C,1))
+
+rdd2.partitions.size
+// res86:Int=15
+ 
+var rdd2=rdd1.reduceByKey(new org.apache.spark.HashPartitioner(2),(x,y)=&gt;x+y)
+//rdd2:org.apache.spark.rdd.RDD[(String,Int)]=ShuffledRDD[95]at reduceByKey at:23
+ 
+rdd2.collect
+// res87:Array[(String,Int)]=Array((B,3),(A,2),(C,1))
+ 
+rdd2.partitions.size
+// res88:Int=2
+</div><div><span style="font-size: 12pt;"><span style="color: rgb(0, 0, 255);"> </span></span></div><div><span style="font-size: 12pt;">eg2.单词统计</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//在 spark-shell 模式下：
+
+val rdd1 = sc.textFile("/home/centos/test.txt")
+val rdd2 = rdd1.flatMap(line=&gt;line.split(" ")) // map( line=&gt;line.split(" "))   每一行 返回一个 数组( 包含 这一行的单词) ;    flatMap 把 这个数组 拍扁 成原子的 即 一个一个单词
+val rdd3 = rdd2.map(word = &gt; (word,1))
+
+// val rdd4 = rdd3.reduceByKey(_ + _)  
+val rdd4 = rdd3.reduceByKey( (x,y) =&gt; x + y )
+
+rdd4.collect
+</div><div><br/></div><div><br/></div><div><span style="font-size: 12pt;">因为 groupByKey 会产生大量的 shuffle  开销，所以  可以使用 reduceByKey() ， 在map 端进行 预聚合  （详见  《大规模数据管理》-&gt;分布式计算框架 -&gt; spark 原理） </span></div><div><br/></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="http://lxw1234.com/archives/2015/07/363.htm" rev="en_rl_none"><span style="font-size: 12pt;">http://lxw1234.com/archives/2015/07/363.htm</span></a></div><div><br/></div><div><br/></div><div><br/></div><h1>操作分区 mapPartitions 和 mapPartitionsWithIndex</h1><div><br/></div><div><span style="font-size: 12pt;">（1）mapPartitions 函数 和 map 函数类似，只不过映射函数的参数 由RDD中的每一个元素 变成了 RDD中每一个分区的迭代器。mapPartitions  的作用类似于 MapReduce 中的 clean up 步骤。</span></div><div><br/></div><div><span style="font-size: 12pt;">如果在映射的过程中需要 频繁创建额外的对象，使用mapPartitions要比map高效。</span></div><div><span style="font-size: 12pt;">例如，将RDD中的所有数据通过JDBC连接写入数据库，如果使用map函数，可能要为每一个元素都创建一个connection，这样开销很大，如果使用mapPartitions，那么只需要针对每一个分区建立一个connection。</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//在 spark-shell 模式下：
+
+var rdd1=sc.makeRDD(1to5,2) // 两个分片： (1,2) , (3,4,5)
+//rdd1有两个分区
+
+var rdd3=rdd1.mapPartitions{x=&gt;{
+|    var result=List[Int]()
+|    var i=0
+|    while(x.hasNext){
+|        i+=x.next()
+|    }
+|    result.::(i).iterator
+|   }
+|}
+
+// rdd3:org.apache.spark.rdd.RDD[Int]=MapPartitionsRDD[84]at mapPartitions at:23
+ 
+//rdd3将rdd1中每个分区中的数值累加
+rdd3.collect
+// res65:Array[Int]=Array(3,12)
+
+rdd3.partitions.size
+
+//res66:Int=2</div><div><span style="font-size: 12pt;">（2）mapPartitionsWithIndex</span></div><div><br/></div><div><span style="font-size: 12pt;">函数作用同mapPartitions，不过提供了两个参数，第一个参数为分区的索引。</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//在 spark-shell 模式下：
+
+var rdd1=sc.makeRDD(1to5,2)
+//rdd1有两个分区
+
+var rdd2=rdd1.mapPartitionsWithIndex{
+	(x,iter)=&gt;{
+		var result=List[String]()
+		var i=0
+		while(iter.hasNext){
+			i+=iter.next()
+		}
+		result.::(x+"|"+i).iterator
+	}
+}
+//rdd2将rdd1中每个分区的数字累加，并在每个分区的累加结果前面加了分区索引
+
+rdd2.collect
+
+//res13:Array[String]=Array(0|3,1|12)</div><div><br/></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="http://lxw1234.com/archives/2015/07/363.htm"><span style="font-size: 12pt;">http://lxw1234.com/archives/2015/07/363.htm</span></a></div><div><br/></div><h1>操作数据行 map 和 flatMap</h1><div><br/></div><div><span style="font-size: 12pt;">（1）map </span></div><div><span style="font-size: 12pt;">将一个RDD中的每个数据项，通过map中的函数映射变为一个新的元素。</span></div><img src="/Resources/2.RDD%20%E7%AE%97%E5%AD%90.resources/C736A18F-C9CC-4AB1-87FB-E5104A1ACA37.png" height="379" width="1087"/><div><br/></div><div><br/></div><div><span style="font-size: 12pt;">输出文件内容 </span></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">hadoop fs -cat /tmp/lxw1234/1.txt
+// hello world
+// hello spark
+// hello hive</div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">//在 spark-shell 模式下：
+
+//读取HDFS文件到RDD
+
+var data = sc.textFile("/tmp/lxw1234/1.txt")
+
+//使用map算子
+var mapresult = data.map(line =&gt; line.split("\\s+"))
+
+//运算map算子结果
+mapresult.collect
+// res0: Array[Array[String]] = Array(Array(hello, world), Array(hello, spark), Array(hello, hive))
+</div><div><br/></div><div><span style="font-size: 12pt;"><b>scala 正则表达式 ：</b></span></div><table style="--en-fitwindow:false;border-left:1px solid #d9d9d9;border-top:1px solid #d9d9d9;border-collapse:collapse;width:380px;" width="380px"><colgroup><col style="width: 190px;"/><col style="width: 190px;"/></colgroup><tbody><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">\\d</span></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">表示 0-9 的数字,</span></div></td></tr><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">\\s</span></div><div><br/></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">表示 空格,回车,换行等空白符,</span></div></td></tr><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;"> \\w</span></div><div><br/></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">表示单词字符 ( 数字 字母 下划线 )</span></div></td></tr><tr><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">+号</span></div></td><td style="--en-typeInfo:{&quot;type&quot;:&quot;text&quot;,&quot;data&quot;:{}};border-right:1px solid #d9d9d9;border-bottom:1px solid #d9d9d9;padding:10px;"><div><span style="font-size: 12pt;">表示一个或多个的意思</span></div></td></tr></tbody></table><div><br/></div><div><span style="font-size: 12pt;">（2）flatMap</span></div><div><span style="font-size: 12pt;">flatmap()是将函数应用于RDD中的每个元素，将返回的迭代器的所有内容构成新的RDD,这样就得到了一个由各列表中的元素组成的RDD,而不是一个列表组成的RDD。</span></div><img src="/Resources/2.RDD%20%E7%AE%97%E5%AD%90.resources/51EF3E9F-6C53-4686-8475-AE5C20C21344.png" height="369" width="993"/><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">//在 spark-shell 模式下：
+
+//使用flatMap算子
+
+var flatmapresult = data.flatMap(line =&gt; line.split("\\s+"))
+
+//运算flagMap算子结果
+
+flatmapresult.collect
+//res1: Array[String] = Array(hello, world, hello, spark, hello, hive)</div><div><br/></div><div><span style="font-size: 12pt;"><span style="font-weight: bold;">引用</span></span></div><div><a target="_blank" rel="noopener" href="http://lxw1234.com/archives/2015/06/325.htm" rev="en_rl_none"><span style="font-size: 12pt;">http://lxw1234.com/archives/2015/06/325.htm</span></a></div><div><br/></div><h1>reduce </h1><div><br/></div><div><span style="font-size: 12pt;">（1）reduce </span></div><div><br/></div><div><span style="font-size: 12pt;">根据映射函数f，对RDD中的元素进行二元计算，返回计算结果。</span></div><div><br/></div><div><span style="font-size: 12pt;">reduce把一个函数作用在一个序列 [x1, x2, x3, ...] 上，这个函数 必须接收两个参数（二元操作符： x  和 y  相当于 集合中的两个元素）</span></div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:python;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;"># python 中利用 reduce 求 sum 
+
+from functools import reduce
+
+def add(x, y):
+   return x + y
+
+reduce(add, [1, 3, 5, 7, 9])
+</div><div><br/></div><div style="--en-codeblock:true;--en-codeblockLanguage:text/x-java;box-sizing: border-box; padding: 8px; font-family: Monaco, Menlo, Consolas, &quot;Courier New&quot;, monospace; font-size: 12px; color: rgb(51, 51, 51); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; background-color: rgb(251, 250, 248); border: 1px solid rgba(0, 0, 0, 0.14902); background-position: initial initial; background-repeat: initial initial; margin-top: 6px;">
+//在 spark-shell 模式下：
+
+var rdd1=sc.makeRDD(1to10,2)
+
+ 
+rdd1.reduce(_+_)
+// res18:Int=55
+ 
+var rdd2=sc.makeRDD(Array(("A",0),("A",2),("B",1),("B",2),("C",1)))
+ 
+rdd2.reduce((x,y)=&gt;{    // x=("A",0)  y=("A",2)
+|(x._1+y._1,x._2+y._2)
+|})
+
+// res21:(String,Int)=(CBBAA,6)
+</div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div><div><br/></div></body></html></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://xinrihui.github.io">Xinrihui</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://xinrihui.github.io/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/">https://xinrihui.github.io/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%B9%E5%A4%84%E7%90%86/">分布式批处理</a><a class="post-meta__tags" href="/tags/Spark/">Spark</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/24/HBase%20%E5%8E%9F%E7%90%864%EF%BC%9A%E4%BA%8B%E5%8A%A1/"><img class="prev-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">HBase - 事务</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/24/1.shuffle%20%E7%A0%94%E7%A9%B6/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Spark - shuffle 机制</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/12/24/1.shuffle%20%E7%A0%94%E7%A9%B6/" title="Spark - shuffle 机制"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-24</div><div class="title">Spark - shuffle 机制</div></div></a></div><div><a href="/2022/12/24/MPP%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" title="MPP 数据库原理"><img class="cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-24</div><div class="title">MPP 数据库原理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xinrihui</div><div class="author-info__description">一个计算机民间爱好者的关于算法，分布式系统和机器学习的笔记，欢迎大佬拍砖交流～。笔者曾在微软亚洲研究院实习，参与国家重点研发计划，兴趣为分布式系统和机器学习。转载请注明引用（应该也没人看 ==），邮箱 xinrihui@outlook.com</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xinrihui"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">读写文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">遍历 </span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">重分区 </span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.1.</span> <span class="toc-text">coalesce() 和 repartition()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">3.2.</span> <span class="toc-text">分组 partitionBy</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">排序 sortBy()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">分组聚合 groupByKey   reduceByKey()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">操作分区 mapPartitions 和 mapPartitionsWithIndex</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">操作数据行 map 和 flatMap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">reduce </span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%20-%E6%95%B0%E6%8D%AEsense/" title="计算机组成原理 -数据sense"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机组成原理 -数据sense"/></a><div class="content"><a class="title" href="/2022/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%20-%E6%95%B0%E6%8D%AEsense/" title="计算机组成原理 -数据sense">计算机组成原理 -数据sense</a><time datetime="2022-12-24T16:17:10.000Z" title="Created 2022-12-25 00:17:10">2022-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/" title="数据结构-查找"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构-查找"/></a><div class="content"><a class="title" href="/2022/12/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/" title="数据结构-查找">数据结构-查找</a><time datetime="2022-12-24T16:04:51.000Z" title="Created 2022-12-25 00:04:51">2022-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/24/MPP%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" title="MPP 数据库原理"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MPP 数据库原理"/></a><div class="content"><a class="title" href="/2022/12/24/MPP%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" title="MPP 数据库原理">MPP 数据库原理</a><time datetime="2022-12-24T15:40:19.000Z" title="Created 2022-12-24 23:40:19">2022-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/24/HBase%20%E5%8E%9F%E7%90%864%EF%BC%9A%E4%BA%8B%E5%8A%A1/" title="HBase - 事务"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HBase - 事务"/></a><div class="content"><a class="title" href="/2022/12/24/HBase%20%E5%8E%9F%E7%90%864%EF%BC%9A%E4%BA%8B%E5%8A%A1/" title="HBase - 事务">HBase - 事务</a><time datetime="2022-12-24T15:40:19.000Z" title="Created 2022-12-24 23:40:19">2022-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/" title="Spark - RDD 算子"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spark - RDD 算子"/></a><div class="content"><a class="title" href="/2022/12/24/2.RDD%20%E7%AE%97%E5%AD%90/" title="Spark - RDD 算子">Spark - RDD 算子</a><time datetime="2022-12-24T15:30:51.000Z" title="Created 2022-12-24 23:30:51">2022-12-24</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Xinrihui</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
