@@ -41,6 +41,7 @@ https://xinrihui.github.io/tags/AdaBoost/
 https://xinrihui.github.io/tags/GBDT/
 https://xinrihui.github.io/tags/PCA/
 https://xinrihui.github.io/tags/LDA/
+https://xinrihui.github.io/tags/spark/
 https://xinrihui.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%89%B9%E5%A4%84%E7%90%86/
 https://xinrihui.github.io/tags/Spark/
 https://xinrihui.github.io/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/
@@ -61,7 +62,7 @@ https://xinrihui.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E
 https://xinrihui.github.io/categories/XGBoost-%E7%B3%BB%E5%88%97/
 https://xinrihui.github.io/categories/Web/
 https://xinrihui.github.io/categories/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/
-https://xinrihui.github.io/categories/Spark-%E7%B3%BB%E5%88%97/
+https://xinrihui.github.io/categories/spark-%E7%B3%BB%E5%88%97/
 https://xinrihui.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/
 https://xinrihui.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E5%88%97/
 https://xinrihui.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/
