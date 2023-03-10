@@ -2,6 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xinrihui.github.io/2022/12/29/hbase%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/05/XGBoost%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%202/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/05/XGBoost%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%201/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/04/xgboost%20%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%202.%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E6%96%87%E6%A1%A3/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/28/5.self-supervised%EF%BC%88Bert%20%E5%92%8C%E5%AE%83%E7%9A%84%E6%9C%8B%E5%8F%8B%E4%BB%AC%EF%BC%89/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/28/3.transformer/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/28/4.self-supervised%EF%BC%88Bert%20%EF%BC%89/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/2022/12/28/2.%20self-attention/</loc>
+    
+    <lastmod>2023-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xinrihui.github.io/2023/03/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%BB%BC%E8%BF%B0/</loc>
     
     <lastmod>2023-03-10</lastmod>
@@ -83,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/2022/12/29/hbase%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    <loc>https://xinrihui.github.io/2022/12/29/hive%20%E5%8E%BB%E9%87%8D%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%20%E5%92%8C%20group%20by%20%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2022-12-29</lastmod>
     
@@ -93,15 +174,6 @@
   
   <url>
     <loc>https://xinrihui.github.io/2022/12/29/hive%20%E8%BF%9E%E6%8E%A5/</loc>
-    
-    <lastmod>2022-12-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/29/hive%20%E5%8E%BB%E9%87%8D%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%20%E5%92%8C%20group%20by%20%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2022-12-29</lastmod>
     
@@ -131,42 +203,6 @@
     <loc>https://xinrihui.github.io/2022/12/25/2.RDD%20%E7%AE%97%E5%AD%90/</loc>
     
     <lastmod>2022-12-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/28/3.transformer/</loc>
-    
-    <lastmod>2022-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/28/2.%20self-attention/</loc>
-    
-    <lastmod>2022-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/28/4.self-supervised%EF%BC%88Bert%20%EF%BC%89/</loc>
-    
-    <lastmod>2022-12-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/28/5.self-supervised%EF%BC%88Bert%20%E5%92%8C%E5%AE%83%E7%9A%84%E6%9C%8B%E5%8F%8B%E4%BB%AC%EF%BC%89/</loc>
-    
-    <lastmod>2022-12-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -218,33 +254,6 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/2022/12/05/XGBoost%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%202/</loc>
-    
-    <lastmod>2022-12-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/05/XGBoost%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%201/</loc>
-    
-    <lastmod>2022-12-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/04/xgboost%20%E6%BA%90%E7%A0%81%E8%B0%83%E8%AF%95/</loc>
-    
-    <lastmod>2022-12-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xinrihui.github.io/2022/12/04/XGBoost%E5%8E%9F%E7%90%86%20-%20%E7%A8%80%E7%96%8F%E6%84%9F%E7%9F%A5/</loc>
     
     <lastmod>2022-12-04</lastmod>
@@ -255,15 +264,6 @@
   
   <url>
     <loc>https://xinrihui.github.io/2022/12/04/XGBoost%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%203/</loc>
-    
-    <lastmod>2022-12-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/2022/12/04/%E5%B0%8F%E7%81%B0%E7%81%B0%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%20-%202.%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E6%96%87%E6%A1%A3/</loc>
     
     <lastmod>2022-12-04</lastmod>
     
@@ -353,6 +353,20 @@
 
   
   <url>
+    <loc>https://xinrihui.github.io/tags/spark/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xinrihui.github.io/tags/transformer/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,14 +402,21 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/tags/spark/</loc>
+    <loc>https://xinrihui.github.io/tags/hash%E8%A1%A8/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://xinrihui.github.io/tags/java/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/tags/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -437,27 +458,6 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/tags/hash%E8%A1%A8/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/java/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xinrihui.github.io/tags/HBase/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -465,7 +465,7 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/tags/Phoenix/</loc>
+    <loc>https://xinrihui.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -493,6 +493,20 @@
   </url>
   
   <url>
+    <loc>https://xinrihui.github.io/tags/Phoenix/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/tags/word2vec/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xinrihui.github.io/tags/xgboost/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -507,14 +521,7 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/tags/word2vec/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
+    <loc>https://xinrihui.github.io/tags/hive/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -529,13 +536,6 @@
   
   <url>
     <loc>https://xinrihui.github.io/tags/node-js/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/hive/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -585,20 +585,6 @@
   
   <url>
     <loc>https://xinrihui.github.io/tags/tf-idf/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/AdaBoost/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/tags/GBDT/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -668,6 +654,20 @@
   </url>
   
   <url>
+    <loc>https://xinrihui.github.io/tags/AdaBoost/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/tags/GBDT/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xinrihui.github.io/tags/PCA/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -684,13 +684,6 @@
 
   
   <url>
-    <loc>https://xinrihui.github.io/categories/transformer-%E7%B3%BB%E5%88%97/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xinrihui.github.io/categories/spark-%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -698,14 +691,7 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/categories/transformer-%E7%B3%BB%E5%88%97/Bert%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</loc>
-    <lastmod>2023-03-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xinrihui.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E%A8%E5%85%AC%E5%BC%8F%E7%B3%BB%E5%88%97/</loc>
+    <loc>https://xinrihui.github.io/categories/Bert%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -713,6 +699,20 @@
   
   <url>
     <loc>https://xinrihui.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/categories/transformer-%E7%B3%BB%E5%88%97/</loc>
+    <lastmod>2023-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xinrihui.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8E%A8%E5%85%AC%E5%BC%8F%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -733,14 +733,14 @@
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/categories/Web/</loc>
+    <loc>https://xinrihui.github.io/categories/hive-%E7%B3%BB%E5%88%97/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xinrihui.github.io/categories/hive-%E7%B3%BB%E5%88%97/</loc>
+    <loc>https://xinrihui.github.io/categories/Web/</loc>
     <lastmod>2023-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
